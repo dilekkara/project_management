@@ -1,0 +1,23 @@
+
+<h1>Yeni Proje Ekle</h1>
+
+<%= form_with model: @project, url: advisor_projects_path, local: true do |f| %>
+  <div>
+    <%= f.label :title, "Proje Başlığı" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :description, "Proje Açıklaması" %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :published, "Yayınla" %>
+    <%= f.check_box :published %>
+  </div>
+
+  <div>
+    <%= f.submit "Projeyi Ekle" %>
+  </div>
+<% end %>

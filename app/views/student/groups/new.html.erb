@@ -1,0 +1,20 @@
+<h2>Yeni Grup Oluştur</h2>
+
+<%= form_with model: @group, url: student_groups_path, method: :post do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Grup Adı" %>
+    <%= f.text_field :name, class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :leader_email, "Grup Lideri E-posta" %>
+    <%= f.text_field :leader_email, class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :student_emails, "Grup Üyelerinin E-postaları (Virgülle Ayırın)" %>
+    <%= f.text_area :student_emails, class: "form-control", placeholder: "ornek1@email.com, ornek2@email.com" %>
+  </div>
+
+  <%= f.submit "Grubu Oluştur", class: "btn btn-success" %>
+<% end %>

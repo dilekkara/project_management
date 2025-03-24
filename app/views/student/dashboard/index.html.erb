@@ -1,0 +1,8 @@
+<h1>Öğrenci Paneli</h1>
+<p>Hoş geldiniz, <%= current_user.email %></p>
+
+<%= link_to "Yayınlanan Projeler", student_projects_path, class: "btn btn-primary" %>
+<%= link_to "Gruplarım", student_groups_path, class: "btn btn-primary" %>
+
+
+<%= link_to "Çıkış Yap", destroy_user_session_path, method: :delete, class: "btn btn-danger", data: { turbo_method: :delete } %>
