@@ -11,19 +11,42 @@ class Student::GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.leader = current_user # Grubu oluşturan kişi lider olur
-
+    @group.leader = current_user
+  
     if @group.save
-      GroupMembership.create(group: @group, student: current_user) # Lideri otomatik ekleyelim
+      # Lideri gruba otomatik olarak ekle
+      GroupMembership.create(group: @group, student: current_user)
+  
+      # Seçilen öğrenci ID'lerini ekle
+      if params[:group][:student_ids]
+        student_ids = params[:group][:student_ids].reject(&:blank?) # boşlukları sil
+        student_ids.each do |student_id|
+          GroupMembership.create(group: @group, student_id: student_id)
+        end
+      end
+  
       redirect_to student_groups_path, notice: "Grup başarıyla oluşturuldu."
     else
       render :new
     end
   end
 
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    redirect_to student_groups_path, notice: "Grup başarıyla silindi."
+  end
+  
+  
+
   private
 
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, student_ids: [])
   end
+
+  
+  
+
+  
 end

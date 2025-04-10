@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   namespace :student do
     get "dashboard", to: "dashboard#index"
 
-    resources :groups, only: [:index, :new, :create, :show] do
+    resources :groups, only: [:index, :new, :create, :show, :destroy] do
       resources :group_members, only: [:create, :destroy]  # Grup üyeleri ekleme/silme
     end
 
