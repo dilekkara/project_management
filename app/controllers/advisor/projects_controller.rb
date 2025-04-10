@@ -60,6 +60,9 @@ module Advisor
       redirect_to advisor_projects_manage_path, notice: "Proje başarıyla silindi!"
     end
 
+   
+    
+
     private
 
     def only_advisors
@@ -74,7 +77,7 @@ module Advisor
     end
 
     def project_params
-      params.require(:project).permit(:title, :description)
+      params.require(:project).permit(:title, :description, :quota)
     end
   end
 end

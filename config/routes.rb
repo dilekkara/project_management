@@ -22,10 +22,11 @@ Rails.application.routes.draw do
       end
   
       member do
-        post :accept  # Projeyi kabul etme route'u
-        post :reject  # Projeyi reddetme route'u
+        patch :accept  # Projeyi kabul etme route'u
+        patch :reject  # Projeyi reddetme route'u
       end
     end
+    
 
   
     resources :groups, only: [:new, :create, :edit, :update, :destroy]

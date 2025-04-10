@@ -13,6 +13,12 @@
   </div>
 
   <div>
+    <%= f.label :guota, "Kontenjan( Kaç grup başvurabilir?)"%><br>
+    <%=f.number_field :quota, min: 1%>
+    
+  </div>
+
+  <div>
     <%= f.label :published, "Yayınla" %>
     <%= f.check_box :published %>
   </div>

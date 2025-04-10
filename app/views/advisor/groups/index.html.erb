@@ -1,0 +1,18 @@
+<h2>Kabul Edilen Gruplar</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Grup Adı</th>
+      <th>Proje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accepted_groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= group.project.title %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

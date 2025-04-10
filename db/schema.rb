@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_24_202152) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_10_102701) do
   create_table "group_memberships", force: :cascade do |t|
     t.integer "group_id"
     t.integer "student_id"
@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_24_202152) do
     t.integer "leader_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.index ["project_id"], name: "index_groups_on_project_id"
   end
 
   create_table "project_applications", force: :cascade do |t|
@@ -52,6 +54,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_24_202152) do
     t.datetime "updated_at", null: false
     t.integer "advisor_id", null: false
     t.boolean "published", default: false
+    t.integer "quota"
+    t.string "status"
     t.index ["advisor_id"], name: "index_projects_on_advisor_id"
   end
 
@@ -68,6 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_24_202152) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "groups", "projects"
   add_foreign_key "project_applications", "projects"
   add_foreign_key "project_applications", "users"
 end
